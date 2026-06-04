@@ -144,10 +144,10 @@ def main():
     # TODO: Call inv.summary() and print each key-value pair neatly.
     summaryDict = inv.summary()
 
-    print(f'{'Total Products: ':>20} {summaryDict['total_products']}')
-    print(f'{'Total Value: ':>20} {summaryDict['total_value']}')
-    print(f'{'categories: ':>20} {str(summaryDict['categories'])} ')
-    print(f'{'out of stock count: ':>20} {summaryDict['out_of_stock_count']} ')
+    print(f"{'Total Products: ':>20} {summaryDict['total_products']}")
+    print(f"{'Total Value: ':>20} {summaryDict['total_value']}")
+    print(f"{'categories: ':>20} {str(summaryDict['categories'])} ")
+    print(f"{'out of stock count: ':>20} {summaryDict['out_of_stock_count']} ")
 
 
     # ── 9. Set operations on categories ───────────────────────────────────
@@ -238,6 +238,24 @@ def main():
         inv.sell(1,-5)
         print("sold a negative quantity not possible")
     except InventoryError as e:
+        print(e)
+
+    # print(inv.products)
+
+    # ── 15. Sell product with insufficient stock (should fail) and attempt to sell again (should succeed) after restock ──────────────────────────── 
+    section("15. Sell product with insufficient stock (should fail) and attempt to sell again (should succeed) after restock")
+
+    try:
+        # product 1 should have a stock of 18
+        inv.sell(1, 19)
+        print("Sold more of product 1 than inventory has in stock")
+    except InsufficientStockError as e:
+        print(e)
+
+    try:
+        inv.restock(1, 1) # stock: 18 -> 19
+        inv.sell(1, 19)
+    except InsufficientStockError as e:
         print(e)
 
 if __name__ == "__main__":
