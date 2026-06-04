@@ -14,11 +14,13 @@ class Product:
     Class attributes:
         total_products (int): Count of all Product instances
     """
+    total_products = 0
     def __init__(self, name, price, stock, category):
         self.name = name
         self.price = price
         self.stock = stock
         self.category = category
+        Product.total_products += 1
 
     def __str__(self):
         return f"Laptop (${self.price:.2f}) — {self.stock} in stock"
