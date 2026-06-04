@@ -16,7 +16,7 @@ References:
 
 from collections import deque
 
-from exceptions import ProductNotFoundError, InsufficientStockError
+from exceptions import ProductNotFoundError, InsufficientStockError, InventoryError
 from product import Product
 
 
@@ -105,6 +105,8 @@ class Inventory:
             3. Reduce product.stock by quantity.
             4. Append to history: "SELL: {quantity}x {product.name} (ID={product_id})"
         """
+        if quantity < 0:
+            raise InventoryError(product_id)
         product = self.get_product(product_id)
         if product.stock < quantity:
            # return InsufficientStockError -->needs to be raise not return and needs parameters
