@@ -12,7 +12,10 @@ class InventoryError(Exception):
 
     Catch this if you want to handle any inventory error regardless of type.
     """
-    pass
+    def __init__(self, product_id):
+        self.product_id = product_id
+        super().__init__(f"Inventory error for product ID {product_id}")
+    
 
 
 class ProductNotFoundError(InventoryError):

@@ -15,7 +15,7 @@ References:
 
 from product import Product
 from inventory import Inventory
-from exceptions import ProductNotFoundError, InsufficientStockError
+from exceptions import ProductNotFoundError, InsufficientStockError, InventoryError
 
 
 def section(title: str) -> None:
@@ -195,6 +195,50 @@ def main():
         
     print(f"total inventory: {len(inv)}")
 
+    # ── 11. Sell exactly all remaining stock (stock → 0) ────────────────────────────
+    section("11. Sell exactly all remaining stock (stock → 0)")
+
+    try:
+        inv.sell(2, 3)
+        product = inv.get_product(2)
+        if product.stock == 0:
+            print("stock is 0")
+    except InsufficientStockError as e:
+        print(e)
+        print(f"requested: {e.requested}")
+        print(f"available:{e.available}")
+
+    # ── 12. Remove a product and try to sell it. ────────────────────────────
+    section("12. Remove a product and try to sell it.")
+    
+    inv.remove_product(9)
+    print("removed: 9")
+    try:
+        inv.sell(9, 1)
+
+    except ProductNotFoundError as e:
+        print(e)
+
+
+    # ── 13. Add duplicate products (same name, same category) — what happens? ────────────────────────────
+    section("13. Add duplicate products (same name, same category) — what happens?")
+
+    try:
+        inv.add_product(p1)
+        print(f"  Added: {p1} → ID={product_id}")
+        print("it dupped the add product we do not have check condiition for addproduct() in inventory class therefore it accepts")
+    except InventoryError as e:
+        print(e)
+
+
+    # ── 14. selling a negative quantity ────────────────────────────
+    section("14. selling a negative quantity")
+
+    try:
+        inv.sell(1,-5)
+        print("sold a negative quantity not possible")
+    except InventoryError as e:
+        print(e)
 
 if __name__ == "__main__":
     main()

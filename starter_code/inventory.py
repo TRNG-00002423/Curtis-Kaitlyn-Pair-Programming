@@ -79,7 +79,7 @@ class Inventory:
         if product_id not in self.products:
             raise ProductNotFoundError(product_id)
         removed_product = self.products.pop(product_id)
-        self.history.append(f"REMOVE: {removed_product.name} (ID={removed_product.id})")
+        self.history.append(f"REMOVE: {removed_product.name} (ID={product_id})") #--> change removed_product.id to product_id
         return removed_product
 
     def get_product(self, product_id: int) -> Product:
