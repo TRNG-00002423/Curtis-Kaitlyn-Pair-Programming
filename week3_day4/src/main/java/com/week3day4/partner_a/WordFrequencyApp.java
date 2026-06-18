@@ -45,6 +45,10 @@ public class WordFrequencyApp {
                 .filter(token -> !token.isEmpty())
                 .collect(Collectors.toList());
 
+        if (tokensList.isEmpty()) {
+            LOGGER.warn("empty token list");
+        }
+
         for (String token : tokensList) {
             incrementToken(counts, token);
         }
