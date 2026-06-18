@@ -2,14 +2,14 @@ package week3_day4.partner_b;
 
 /**
  * Partner B — comparable task for PriorityQueue.
- * TODO: implement Comparable<Task> (document ordering rule)
+ * : implement Comparable<Task> (document ordering rule)
  */
 public class Task implements Comparable<Task> {
-    // TODO fields priority, description
+    //  fields priority, description
     private int priority;
     private String description;
 
-    // TODO ctor, getters, toString
+    //  ctor, getters, toString
 
     public Task(int priority, String description){
         this.priority = priority;

@@ -7,7 +7,7 @@ import java.util.Queue;
 public class TaskQueueApp {
     public static void main(String[] args) {
         Queue<Task> q = new PriorityQueue<>();
-        // TODO: offer tasks out of order, poll and print, peek demo
+        // : offer tasks out of order, poll and print, peek demo
         
         //q.offer(new Task(3, "wake up"));
         q.offer(new Task(1, "run"));
