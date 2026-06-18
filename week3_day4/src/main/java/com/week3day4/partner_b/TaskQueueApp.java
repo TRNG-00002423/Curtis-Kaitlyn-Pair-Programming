@@ -6,9 +6,15 @@ import java.util.Queue;
 import java.util.function.Predicate;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /** Partner B — drain PriorityQueue in priority order. */
 public class TaskQueueApp {
+    private static final Logger logger =
+            LoggerFactory.getLogger(TaskQueueApp.class);
     public static void main(String[] args) {
+        logger.info("Starting TaskQueueApp");
         Queue<Task> q = new PriorityQueue<>();
         // : offer tasks out of order, poll and print, peek demo
 
@@ -16,6 +22,10 @@ public class TaskQueueApp {
         q.offer(new Task(1, "run"));
         q.offer(new Task(5, "jump"));
         q.offer(new Task(2, "crawl"));
+
+        if (q.isEmpty()) {
+        logger.warn("Task queue is empty");
+        }
 
         System.out.println("Peek:");
         System.out.println(q.peek());
@@ -36,6 +46,7 @@ public class TaskQueueApp {
         System.out.println("\nPoll Order: ");
 
         while (!q.isEmpty()) {
+            logger.debug("Polling task: {}", q.peek());
             System.out.println(q.poll());
         }
 
