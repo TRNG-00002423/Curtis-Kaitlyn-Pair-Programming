@@ -1,10 +1,7 @@
 # Pair retro — Week 3 Thursday
 
-<<<<<<< HEAD
-**Pair names:** _____Curtis_____ / ___Kaitlyn______
-=======
+
 **Pair names:** Kaitlyn (A) / Curtis (B)
->>>>>>> 7ae1a6e065c4da321be0b463659a64a8df2efc99
 
 1. **What went well?** (tools, communication, division of work)
 The communication and the division of work went well, and we did a good job of incorporating collections and lambda functions into our code.
