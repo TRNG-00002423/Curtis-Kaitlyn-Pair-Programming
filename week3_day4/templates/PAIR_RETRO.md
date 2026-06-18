@@ -1,6 +1,6 @@
 # Pair retro — Week 3 Thursday
 
-**Pair names:** __________________ / __________________
+**Pair names:** _____Curtis_____ / ___Kaitlyn______
 
 1. **What went well?** (tools, communication, division of work)
 
