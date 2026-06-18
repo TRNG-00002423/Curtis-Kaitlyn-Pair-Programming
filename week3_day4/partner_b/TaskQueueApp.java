@@ -1,7 +1,10 @@
 package week3_day4.partner_b;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.function.Predicate;
+import java.util.ArrayList;
 
 /** Partner B — drain PriorityQueue in priority order. */
 public class TaskQueueApp {
@@ -16,11 +19,25 @@ public class TaskQueueApp {
 
         System.out.println("Peek:");
         System.out.println(q.peek());
+        ArrayList<Task> taskList = new ArrayList<>(q);
 
-        System.out.println("\n Poll order:");
+        Predicate<Task> importantTask = task -> task.getPriority() <=2;
 
-        while(!q.isEmpty()){
+        taskList.removeIf(importantTask.negate());
+
+        //sort by description
+        Comparator<Task> descriptionOrder = Comparator.comparing(Task::getDescription);
+        taskList.sort(descriptionOrder);
+
+        System.out.println("\nImportant Tasks:");
+
+        taskList.forEach(System.out::println);
+
+        System.out.println("\nPoll Order: ");
+
+        while (!q.isEmpty()) {
             System.out.println(q.poll());
         }
+
     }
 }
