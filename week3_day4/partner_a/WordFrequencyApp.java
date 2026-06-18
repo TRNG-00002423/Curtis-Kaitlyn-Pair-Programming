@@ -1,5 +1,7 @@
 package week3_day4.partner_a;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,22 +20,29 @@ public class WordFrequencyApp {
             """;
     static final int N = 3;
 
+    static void incrementToken(Map<String, Integer> counts, String token) {
+        if (counts.containsKey(token)) {
+            counts.put(token, counts.get(token) + 1);
+        } else {
+            counts.put(token, 1);
+
+        }
+    }
+
     public static void main(String[] args) {
         Map<String, Integer> counts = new HashMap<>();
         // : tokenize SAMPLE, populate counts (lower-case tokens)
-        for (String token : SAMPLE.split("[ \n\t]")) {
-            token = token.toLowerCase();
-            token = token.replaceAll("[^a-zA-Z ]", "");
-            if (token.isEmpty()) {
-                continue;
-            }
+        String[] tokens = SAMPLE.split("[ \n\t]");
+        List<String> tokensList = new ArrayList<>(Arrays.asList(tokens));
 
-            if (counts.containsKey(token)) {
-                counts.put(token, counts.get(token) + 1);
-            } else {
-                counts.put(token, 1);
+        tokensList = tokensList.stream()
+                .map(String::toLowerCase)
+                .map(token -> token.replaceAll("[^a-zA-Z ]", ""))
+                .filter(token -> !token.isEmpty())
+                .collect(Collectors.toList());
 
-            }
+        for (String token : tokensList) {
+            incrementToken(counts, token);
         }
 
         TreeSet<String> vocabulary = new TreeSet<String>(counts.keySet());
